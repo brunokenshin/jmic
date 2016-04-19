@@ -1,4 +1,16 @@
 ToDo:
+- Tarefas
+	- Adicionar o MailParser
+	- Criar a classe que vai ser salva no banco ou usada no relatório
+	- Criar a parte de persistência no banco
+	- Criar o Controller
+	- Testar o deploy e funcionamento no openShift
+
 - Testes:
+	- ConfigurationService
 	- ConfigDao
-	
+	- MailParser
+	- Adicionar o H2 ou qualquer banco em memória para os testes integrados.
+
+- Melhorias:
+	- Ver como aproveitar melhor os recursos do Java 8
