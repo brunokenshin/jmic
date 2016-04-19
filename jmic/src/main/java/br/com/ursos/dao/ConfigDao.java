@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import br.com.ursos.config.Config;
-import br.com.ursos.config.ConfigRowMapper;
+import br.com.ursos.config.MailConfig;
+import br.com.ursos.config.MailConfigRowMapper;
 import br.com.ursos.config.ParserFieldConfig;
 import br.com.ursos.config.ParserFieldConfigRowMapper;
 
@@ -21,9 +21,9 @@ public class ConfigDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public List<Config> getMailConfigs() {
+	public List<MailConfig> getMailConfigs() {
 		String sql = "SELECT * FROM MAIL_CONNECTION_CONFIG";
-		return jdbcTemplate.query(sql, new ConfigRowMapper());
+		return jdbcTemplate.query(sql, new MailConfigRowMapper());
 	}
 
 	public List<ParserFieldConfig> getParserConfigs() {
