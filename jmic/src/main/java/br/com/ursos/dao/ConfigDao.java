@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import br.com.ursos.config.Config;
 import br.com.ursos.config.ConfigRowMapper;
+import br.com.ursos.config.ParserFieldConfig;
+import br.com.ursos.config.ParserFieldConfigRowMapper;
 
 @Component
 public class ConfigDao {
@@ -22,6 +24,11 @@ public class ConfigDao {
 	public List<Config> getMailConfigs() {
 		String sql = "SELECT * FROM MAIL_CONNECTION_CONFIG";
 		return jdbcTemplate.query(sql, new ConfigRowMapper());
+	}
+
+	public List<ParserFieldConfig> getParserConfigs() {
+		String sql = "select * from PARSER_CONFIG";
+		return jdbcTemplate.query(sql, new ParserFieldConfigRowMapper());
 	}
 
 }
