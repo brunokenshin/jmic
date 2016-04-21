@@ -45,16 +45,16 @@ public class ConfigurationService {
 		String unread = null;
 
 		for (MailConfig config : configs) {
-			if (FILTER_SENDER.equals(config.name)) {
+			if (FILTER_SENDER.configName.equals(config.name)) {
 				sender = config.value;
 
-			} else if (FILTER_SUBJECT.equals(config.name)) {
+			} else if (FILTER_SUBJECT.configName.equals(config.name)) {
 				subject = config.value;
 
-			} else if (FILTER_DAYS_AGO.equals(config.name)) {
+			} else if (FILTER_DAYS_AGO.configName.equals(config.name)) {
 				daysAgo = config.value;
 
-			} else if (FILTER_UNREAD.equals(config.name)) {
+			} else if (FILTER_UNREAD.configName.equals(config.name)) {
 				unread = config.value;
 			}
 		}
