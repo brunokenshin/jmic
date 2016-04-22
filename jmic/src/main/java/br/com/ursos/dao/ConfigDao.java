@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import br.com.ursos.config.ExportConfig;
+import br.com.ursos.config.ExportConfigRowMapper;
 import br.com.ursos.config.MailConfig;
 import br.com.ursos.config.MailConfigRowMapper;
 import br.com.ursos.config.ParserFieldConfig;
@@ -31,4 +33,8 @@ public class ConfigDao {
 		return jdbcTemplate.query(sql, new ParserFieldConfigRowMapper());
 	}
 
+	public List<ExportConfig> getExportConfigs() {
+		String sql = "select * from EXPORT_CONFIG";
+		return jdbcTemplate.query(sql, new ExportConfigRowMapper());
+	}
 }

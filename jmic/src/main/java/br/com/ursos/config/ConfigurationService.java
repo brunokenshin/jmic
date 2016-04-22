@@ -62,4 +62,8 @@ public class ConfigurationService {
 		return new MailFilterConfigs(subject, sender, unread, daysAgo);
 	}
 
+	public List<ExportConfig> getExportConfigs() {
+		return configDao.getExportConfigs();
+	}
+
 }
