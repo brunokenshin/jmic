@@ -1,16 +1,21 @@
 ToDo:
 - Tarefas
-	- Adicionar o MailParser
-	- Criar a classe que vai ser salva no banco ou usada no relatório
-	- Criar a parte de persistência no banco
-	- Criar o Controller
+	- Questão da tabela de persistência (só pode haver 1)
+	- Informar quantos registros foram importados e talvez exibir na resposta
+	- Passar a criar os beans programaticamente
+	- Adicionar logs
+	- Fazer os tratamentos de erros
 	- Testar o deploy e funcionamento no openShift
 
 - Testes:
 	- ConfigurationService
+	- PersistService
+	- FieldDao
 	- ConfigDao
 	- MailParser
+	- Controller
 	- Adicionar o H2 ou qualquer banco em memória para os testes integrados.
 
 - Melhorias:
 	- Ver como aproveitar melhor os recursos do Java 8
+	- Ver se é viável deixar as configs em arquivos

@@ -1,4 +1,4 @@
-package br.com.ursos.dao;
+package br.com.ursos.persistance;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -19,7 +19,7 @@ import javax.mail.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.ursos.config.ConfigurationService;
+import br.com.ursos.service.ConfigurationService;
 
 @Component
 public class MailReader {

@@ -1,4 +1,4 @@
-package br.com.ursos.config;
+package br.com.ursos.service;
 
 import static br.com.ursos.config.ConfigurationEnum.FILTER_DAYS_AGO;
 import static br.com.ursos.config.ConfigurationEnum.FILTER_SENDER;
@@ -11,7 +11,11 @@ import java.util.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.ursos.dao.ConfigDao;
+import br.com.ursos.config.ExportConfig;
+import br.com.ursos.config.MailConfig;
+import br.com.ursos.config.MailFilterConfigs;
+import br.com.ursos.config.ParserFieldConfig;
+import br.com.ursos.persistance.ConfigDao;
 
 @Component
 public class ConfigurationService {

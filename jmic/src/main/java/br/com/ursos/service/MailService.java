@@ -8,7 +8,6 @@ import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.ursos.config.ConfigurationService;
 import br.com.ursos.export.FieldList;
 import br.com.ursos.mail.MailParser;
 import br.com.ursos.mail.MailReader;

@@ -14,7 +14,7 @@ import javax.mail.NoSuchProviderException;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.ursos.config.ConfigurationService;
+import br.com.ursos.service.ConfigurationService;
 
 public class MailReaderTest {
 
