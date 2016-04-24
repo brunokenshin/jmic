@@ -1,6 +1,7 @@
 ToDo:
 - Tarefas
 	- Questão da tabela de persistência (só pode haver 1)
+	- Configurar o segundo jdbc template. (leitura e persistência devem ser bancos diferentes)
 	- Informar quantos registros foram importados e talvez exibir na resposta
 	- Passar a criar os beans programaticamente
 	- Adicionar logs

@@ -3,6 +3,10 @@ JMIC is a simple webapp to extract important information from emails using speci
 
 Project uses Java 8, Spring Boot as the core framework application, gradle 2.12 as building tool, Maven Central repositories for downloading dependencies.
 
+# Limitations:
+- Must be only one persistance table for all fields
+- Persistance table MUST have column "ID" (Primary Key) and it must be the ONLY "NOT NULL" column.
+
 # Dependencies:
 - org.springframework.boot:spring-boot-starter-mail
 - org.springframework.boot:spring-boot-starter-web
