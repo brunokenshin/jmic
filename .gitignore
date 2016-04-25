@@ -4,6 +4,11 @@ jmic/.classpath
 jmic/.project
 jmic/bin/
 
+#IDEA files
+jmic/*iml
+jmic/*ipr
+jmic/*iws
+
 #Gradle files and folders
 jmic/.gradle/
 jmic/build/
