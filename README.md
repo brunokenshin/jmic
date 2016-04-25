@@ -8,12 +8,17 @@ Project uses Java 8, Spring Boot as the core framework application, gradle 2.12 
 - Persistance table MUST have column "ID" (Primary Key) and it must be the ONLY "NOT NULL" column.
 
 # Dependencies:
+- org.jsoup:jsoup:1.8.3
+- mysql:mysql-connector-java
+- org.springframework.boot:spring-boot-starter-jdbc
 - org.springframework.boot:spring-boot-starter-mail
 - org.springframework.boot:spring-boot-starter-web
 - org.springframework.boot:spring-boot-starter-tomcat
 - org.springframework.boot:spring-boot-starter-test
 
 # Filters configuration:
+These configurations defines which emails jmic will consider to do all the work. The more restricted search, faster will be the process.  
+
 - subject
     + Sets keywords that lib should search at messages subject.
     + If null, it will search all message subjects
@@ -31,6 +36,16 @@ Project uses Java 8, Spring Boot as the core framework application, gradle 2.12 
     + PS: The bigger it is, more mails will catch and can let the system too slow. If let it null, will get all time emails and its VERY UNRECOMENDED!
 
 # Fields configuration:
+These are the fields that you want to get from the messages.
+
+- fieldName
+    + Represents the name of the field defined by his patterns.
+
+- fieldStartPattern
+    + Defines the pattern that mark the start of the wanted information.
+
+- fieldEndPattern
+    + Defines the pattern that mark the end of the wanted information.
 
 # Important:
 For google accounts maybe you need to active the "Less secure apps" option:
