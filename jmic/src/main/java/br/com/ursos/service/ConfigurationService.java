@@ -31,7 +31,9 @@ public class ConfigurationService {
 		List<MailConfig> mailConfigs = configDao.getMailConfigs();
 		Properties props = new Properties();
 
-		mailConfigs.stream().forEach(config -> props.setProperty(config.name, config.value));
+		for (MailConfig mailConfig : mailConfigs) {
+			props.setProperty(mailConfig.name, mailConfig.value);
+		}
 
 		return props;
 	}

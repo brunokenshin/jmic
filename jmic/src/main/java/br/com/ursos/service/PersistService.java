@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ursos.config.ExportConfig;
+import br.com.ursos.export.Field;
 import br.com.ursos.export.FieldList;
 import br.com.ursos.persistance.FieldDao;
 
@@ -25,16 +26,16 @@ public class PersistService {
 	@Transactional
 	public void persistFields(FieldList fields) {
 		List<ExportConfig> exportConfigs = configService.getExportConfigs();
-
 		long rowId = fieldDao.createRow(exportConfigs);
-
-		exportConfigs.forEach(exportConfig -> {
-			fields.forEach(field -> {
-				if (field.name.equals(exportConfig.parserName)) {
-					fieldDao.updateRow(rowId, field, exportConfig);
+		
+		for (ExportConfig config : exportConfigs) {
+			for (Field field : fields) {
+				if (field.name.equals(config.parserName)) {
+					fieldDao.updateRow(rowId, field, config);
 				}
-			});
-		});
+
+			}
+		}
 	}
 
 }
