@@ -1,0 +1,9 @@
+# docker box definition
+box: java
+
+build:
+  steps:
+    - script:
+      name: gradle
+      code: |
+        ./jmic/gradlew
