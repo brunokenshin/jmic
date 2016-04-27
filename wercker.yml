@@ -4,6 +4,7 @@ box: java
 build:
   steps:
     - script:
-      name: gradle
+      name: gradle build
       code: |
-        ./jmic/gradlew
+        cd jmic/
+        ./gradlew
