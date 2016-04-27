@@ -8,3 +8,20 @@ build:
       code: |
         cd jmic/
         ./gradlew
+deploy:
+  OPENSHIFT:
+    - add-ssh-key:
+        keyname: OPENSHIFT_SSH_KEY
+        host: $OPENSHIFT_HOST
+    - add-to-known_hosts:
+        hostname: $OPENSHIFT_HOST
+    - script:
+        name: git setup
+        code: |
+          git config --global user.email $EMAIL_ADDRESS
+          git config --global user.name $USER_NAME
+          git config --global push.default matching
+    - script:
+        name: deploy
+        code: |
+          git push $OPENSHIFT_GIT_URL $OPENSHIFT_BRANCH
