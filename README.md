@@ -1,6 +1,4 @@
-# Java Mail Info Collector - JMIC 
-
-[![wercker status](https://app.wercker.com/status/2fd82aede5750d80a0e51d1df3e85835/m "wercker status")](https://app.wercker.com/project/bykey/2fd82aede5750d80a0e51d1df3e85835)
+# Java Mail Info Collector - JMIC [![wercker status](https://app.wercker.com/status/2fd82aede5750d80a0e51d1df3e85835/m "wercker status")](https://app.wercker.com/project/bykey/2fd82aede5750d80a0e51d1df3e85835)
 
 JMIC is a simple webapp to extract important information from emails using specific patterns.
 
