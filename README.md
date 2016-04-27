@@ -1,4 +1,7 @@
-# Java Mail Info Collector - JMIC
+# Java Mail Info Collector - JMIC 
+
+[![wercker status](https://app.wercker.com/status/2fd82aede5750d80a0e51d1df3e85835/m "wercker status")](https://app.wercker.com/project/bykey/2fd82aede5750d80a0e51d1df3e85835)
+
 JMIC is a simple webapp to extract important information from emails using specific patterns.
 
 Project uses Java 8, Spring Boot as the core framework application, gradle 2.12 as building tool, Maven Central repositories for downloading dependencies.
