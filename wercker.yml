@@ -24,4 +24,4 @@ deploy:
     - script:
         name: deploy
         code: |
-          git push -u $OPENSHIFT_GIT_URL $OPENSHIFT_BRANCH
+          git push -f $OPENSHIFT_GIT_URL $OPENSHIFT_BRANCH
