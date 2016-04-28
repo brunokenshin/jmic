@@ -19,8 +19,18 @@ apply plugin: 'war'
 defaultTasks 'clean' , 'build' , 'war'
 
 war {
-	baseName = 'jmic'
-	version = '0.0.1-SNAPSHOT'
+	version = '0.0.1'
+    manifest {
+        attributes('Application-Name':project.name,
+                   'Implementation-Version': version,
+		           'Created-By': 'Gradle',
+    	           'Built-Gradle': project.gradle.gradleVersion,
+				   'Build-Date': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+	               'Built-JDK': System.getProperty('java.version')
+		)
+    }
+    archiveName project.name + ".war"
+
 }
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
