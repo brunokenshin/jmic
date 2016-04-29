@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jmic by brunokenshin</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jmic</h1>
+        <p>JMIC is a simple webapp to extract important information from emails using specific patterns.</p>
+
+        <p class="view"><a href="https://github.com/brunokenshin/jmic">View the Project on GitHub <small>brunokenshin/jmic</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/brunokenshin/jmic/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/brunokenshin/jmic/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/brunokenshin/jmic">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="java-mail-info-collector---jmic-" class="anchor" href="#java-mail-info-collector---jmic-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Java Mail Info Collector - JMIC <a href="https://app.wercker.com/project/bykey/2fd82aede5750d80a0e51d1df3e85835"><img src="https://app.wercker.com/status/2fd82aede5750d80a0e51d1df3e85835/s" alt="wercker status" title="wercker status"></a>
+</h1>
+
+<p>JMIC is a simple webapp to extract important information from emails using specific patterns.</p>
+
+<p>Project uses Java 8, Spring Boot as the core framework application, gradle 2.12 as building tool, Maven Central repositories for downloading dependencies.</p>
+
+<h1>
+<a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Limitations:</h1>
+
+<ul>
+<li>Must be only one persistance table for all fields</li>
+<li>Persistance table MUST have column "ID" (Primary Key) and it must be the ONLY "NOT NULL" column.</li>
+</ul>
+
+<h1>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies:</h1>
+
+<ul>
+<li>org.jsoup:jsoup:1.8.3</li>
+<li>mysql:mysql-connector-java</li>
+<li>org.springframework.boot:spring-boot-starter-jdbc</li>
+<li>org.springframework.boot:spring-boot-starter-mail</li>
+<li>org.springframework.boot:spring-boot-starter-web</li>
+<li>org.springframework.boot:spring-boot-starter-tomcat</li>
+<li>org.springframework.boot:spring-boot-starter-test</li>
+</ul>
+
+<h1>
+<a id="filters-configuration" class="anchor" href="#filters-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Filters configuration:</h1>
+
+<p>These configurations defines which emails jmic will consider to do all the work. The more restricted search, faster will be the process.  </p>
+
+<ul>
+<li>subject
+
+<ul>
+<li>Sets keywords that lib should search at messages subject.</li>
+<li>If null, it will search all message subjects</li>
+</ul>
+</li>
+<li>sender
+
+<ul>
+<li>Sets the sender email that lib should search.</li>
+<li>If null, it will search all senders.</li>
+</ul>
+</li>
+<li>unread
+
+<ul>
+<li>Sets the read/unread mail flag.</li>
+<li>'True' will search for unread mails.</li>
+<li>'False' will search for read mails.</li>
+<li>If null, it will search for both.</li>
+</ul>
+</li>
+<li>daysago
+
+<ul>
+<li>Sets the how much days from now to past the app should search.</li>
+<li>If null, it will search all the time.</li>
+<li>PS: The bigger it is, more mails will catch and can let the system too slow. If let it null, will get all time emails and its VERY UNRECOMENDED!</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<a id="fields-configuration" class="anchor" href="#fields-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields configuration:</h1>
+
+<p>These are the fields that you want to get from the messages.</p>
+
+<ul>
+<li>
+<p>fieldName</p>
+
+<ul>
+<li>Represents the name of the field defined by his patterns.</li>
+</ul>
+</li>
+<li>
+<p>fieldStartPattern</p>
+
+<ul>
+<li>Defines the pattern that mark the start of the wanted information.</li>
+</ul>
+</li>
+<li>
+<p>fieldEndPattern</p>
+
+<ul>
+<li>Defines the pattern that mark the end of the wanted information.</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<a id="important" class="anchor" href="#important" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Important:</h1>
+
+<p>For google accounts maybe you need to active the "Less secure apps" option:</p>
+
+<ul>
+<li><a href="https://www.google.com/settings/security/lesssecureapps">https://www.google.com/settings/security/lesssecureapps</a></li>
+</ul>
+
+<h1>
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>References:</h1>
+
+<ul>
+<li><a href="http://www.compiletimeerror.com/2013/06/reading-email-using-javamail-api-example.html#.VvBXfHyrRD8">http://www.compiletimeerror.com/2013/06/reading-email-using-javamail-api-example.html#.VvBXfHyrRD8</a></li>
+<li><a href="http://www.oracle.com/technetwork/java/javamail/faq/index.html#gmail">http://www.oracle.com/technetwork/java/javamail/faq/index.html#gmail</a></li>
+<li><a href="https://gusto77.wordpress.com/2012/04/03/extracting-text-from-email-message-with-javamail/">https://gusto77.wordpress.com/2012/04/03/extracting-text-from-email-message-with-javamail/</a></li>
+<li><a href="http://stackoverflow.com/questions/870045/java-imap-fetch-messages-since-a-date">http://stackoverflow.com/questions/870045/java-imap-fetch-messages-since-a-date</a></li>
+</ul>
+
+<h1>
+<a id="build-information" class="anchor" href="#build-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Build Information:</h1>
+
+<p><a href="https://app.wercker.com/project/bykey/2fd82aede5750d80a0e51d1df3e85835"><img src="https://app.wercker.com/status/2fd82aede5750d80a0e51d1df3e85835/m" alt="wercker status" title="wercker status"></a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/brunokenshin">brunokenshin</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
