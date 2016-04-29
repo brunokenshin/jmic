@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ursos.export.FieldList;
 import br.com.ursos.service.MailService;
 
 @RestController
@@ -23,7 +24,7 @@ public class MailController {
 
 	@ResponseBody
 	@RequestMapping("/report")
-	public String reportFields() throws MessagingException, IOException {
+	public FieldList reportFields() throws MessagingException, IOException {
 		return mailService.reportFields();
 	}
 

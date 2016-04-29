@@ -2,6 +2,9 @@ package br.com.ursos.export;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat
 @SuppressWarnings("serial")
 public class FieldList extends ArrayList<Field> {
 

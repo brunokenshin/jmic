@@ -32,15 +32,15 @@ public class MailService {
 		this.mailParser = mailParser;
 	}
 
-	public String reportFields() throws MessagingException, IOException {
+	public FieldList reportFields() throws MessagingException, IOException {
 		Message[] emails = mailReader.getEmails();
-		StringBuilder sb = new StringBuilder();
-
+		FieldList fields = new FieldList();
+		
 		for (Message message : emails) {
-			sb.append(getMessageFields(message));
+			fields.addAll(getMessageFields(message));
 		}
 
-		return sb.toString();
+		return fields;
 	}
 
 	public void importFields() throws MessagingException, IOException {
