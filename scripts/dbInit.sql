@@ -62,7 +62,7 @@ INSERT INTO JMIC.MAIL_CONNECTION_CONFIG(CONFIG_NAME, CONFIG_VALUE)
 	VALUES ('mail.imap.socketFactory.class', 'javax.net.ssl.SSLSocketFactory');    
 
 INSERT INTO JMIC.MAIL_CONNECTION_CONFIG(CONFIG_NAME, CONFIG_VALUE)
-	VALUES ('mail.imap.socketFactory.class', 'false');
+	VALUES ('mail.imap.socketFactory.fallback', 'false');
 
 INSERT INTO JMIC.MAIL_CONNECTION_CONFIG(CONFIG_NAME, CONFIG_VALUE)
 	VALUES ('mail.imap.socketFactory.port', '993');
