@@ -52,9 +52,11 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	testCompile('org.apache.commons:commons-lang3:3.4')
+	testCompile('com.h2database:h2:1.4.191')
+	
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }
-
 
 eclipse {
 	classpath {
