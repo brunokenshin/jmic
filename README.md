@@ -10,6 +10,8 @@ Project uses Java 8, Spring Boot as the core framework application, gradle 2.12 
 # Dependencies:
 - org.jsoup:jsoup:1.8.3
 - mysql:mysql-connector-java
+- com.h2database:h2:1.4.191
+- org.apache.commons:commons-lang3:3.4
 - org.springframework.boot:spring-boot-starter-jdbc
 - org.springframework.boot:spring-boot-starter-mail
 - org.springframework.boot:spring-boot-starter-web
