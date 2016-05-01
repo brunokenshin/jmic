@@ -19,6 +19,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -42,7 +43,7 @@ public class ConfigurationServiceTest {
 	}
 
 	@Test
-	public void testGetMailConnectionConfigs() {
+	public void testGetMailConnectionConfigs() throws SQLException {
 		when(dao.getMailConfigs()).thenReturn(populateMailConfigs());
 		
 		Properties configs = service.getMailConnectionProperties();
@@ -61,7 +62,7 @@ public class ConfigurationServiceTest {
 	}
 
 	@Test
-	public void testGetFilterConfigs() {
+	public void testGetFilterConfigs() throws SQLException {
 		when(dao.getMailConfigs()).thenReturn(populateMailConfigs());
 		
 		MailFilterConfigs configs = service.getFilterConfigs();
@@ -72,14 +73,14 @@ public class ConfigurationServiceTest {
 	}
 
 	@Test
-	public void testGetParserConfigs() {
+	public void testGetParserConfigs() throws SQLException {
 		when(dao.getParserConfigs()).thenReturn(null);
 		service.getParserConfigs();
 		verify(dao, times(1)).getParserConfigs();
 	}
 
 	@Test
-	public void testGetExportConfigs() {
+	public void testGetExportConfigs() throws SQLException {
 		when(dao.getExportConfigs()).thenReturn(null);
 		service.getExportConfigs();
 		verify(dao, times(1)).getExportConfigs();

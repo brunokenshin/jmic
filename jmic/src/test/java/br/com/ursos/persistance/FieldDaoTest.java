@@ -2,6 +2,8 @@ package br.com.ursos.persistance;
 
 import static org.junit.Assert.assertEquals;
 
+import java.sql.SQLException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,15 +30,20 @@ public class FieldDaoTest {
 	}
 	
 	@Test
-	public void testCreateRow() {
-		dao.createRow("CLIENTE");
+	public void testCreateRow() throws SQLException {
+		dao.createRow(tableName);
 		Integer count = jdbc.queryForObject("SELECT COUNT(*) FROM " + tableName, Integer.class);
 
 		assertEquals(new Integer(1), count);
 	}
 
+	@Test(expected = SQLException.class)
+	public void testErrorIfTableDoesNotExists() throws Exception {
+		dao.createRow("INVALID_TABLE");
+	}
+
 	@Test
-	public void testUpdateRow() {
+	public void testUpdateRow() throws SQLException {
 		String columnName = "NOME";
 		jdbc.execute("INSERT INTO " + tableName + "(" + columnName + ") VALUES('ALFRED PENNYWORTH')");
 
@@ -47,7 +54,14 @@ public class FieldDaoTest {
 
 		String sql = "SELECT " + columnName + " FROM " + tableName + " WHERE ID=1";
 		assertEquals("BRUCE WAYNE", jdbc.queryForObject(sql, String.class));
-
 	}
 
+	@Test(expected = SQLException.class)
+	public void testErrorDuringUpdate() throws Exception {
+		Field field = new Field("PARSER_NAME", "BRUCE WAYNE");
+		ExportConfig exportConfig = new ExportConfig("PARSER_NAME", tableName, "INVALID_COLUMN");
+
+		dao.updateRow(1, field, exportConfig);
+	}
+	
 }

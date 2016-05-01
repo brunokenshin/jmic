@@ -4,6 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class PersistServiceTest {
 	}
 
 	@Test
-	public void testPersistFields() {
+	public void testPersistFields() throws SQLException {
 		FieldList fields = new FieldList();
 		fields.add(new Field("NAME", "Bruce Wayne"));
 		fields.add(new Field("LOCATION", "Wayne's Mansion, Gothan City"));

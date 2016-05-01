@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.mail.MessagingException;
@@ -27,7 +28,7 @@ public class MailReaderTest {
 	}
 
 	@Test(expected = NoSuchProviderException.class)
-	public void test_invalid_protocol() throws MessagingException {
+	public void test_invalid_protocol() throws MessagingException, SQLException {
 		Properties props = createPropertiesForProtocol("invalid+protocol");
 
 		when(configService.getMailConnectionProperties()).thenReturn(props);

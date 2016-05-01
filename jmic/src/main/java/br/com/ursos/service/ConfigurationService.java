@@ -14,6 +14,7 @@ import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_PORT;
 import static br.com.ursos.config.MailConfigurationEnum.SSL_ENABLE;
 import static br.com.ursos.config.MailConfigurationEnum.USERNAME;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
@@ -36,7 +37,7 @@ public class ConfigurationService {
 		this.configDao = configDao;
 	}
 
-	public Properties getMailConnectionProperties() {
+	public Properties getMailConnectionProperties() throws SQLException {
 		List<MailConfig> mailConfigs = configDao.getMailConfigs();
 		Properties props = new Properties();
 
@@ -57,7 +58,7 @@ public class ConfigurationService {
 		return props;
 	}
 
-	public MailFilterConfigs getFilterConfigs() {
+	public MailFilterConfigs getFilterConfigs() throws SQLException {
 		List<MailConfig> configs = configDao.getMailConfigs();
 
 		String sender = null;
@@ -83,11 +84,11 @@ public class ConfigurationService {
 		return new MailFilterConfigs(subject, sender, unread, daysAgo);
 	}
 
-	public List<ParserFieldConfig> getParserConfigs() {
+	public List<ParserFieldConfig> getParserConfigs() throws SQLException {
 		return configDao.getParserConfigs();
 	}
 	
-	public List<ExportConfig> getExportConfigs() {
+	public List<ExportConfig> getExportConfigs() throws SQLException {
 		return configDao.getExportConfigs();
 	}
 

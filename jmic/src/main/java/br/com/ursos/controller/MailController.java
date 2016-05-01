@@ -1,6 +1,7 @@
 package br.com.ursos.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.mail.MessagingException;
 
@@ -24,13 +25,13 @@ public class MailController {
 
 	@ResponseBody
 	@RequestMapping("/report")
-	public FieldList reportFields() throws MessagingException, IOException {
+	public FieldList reportFields() throws MessagingException, IOException, SQLException {
 		return mailService.reportFields();
 	}
 
 	@ResponseBody
 	@RequestMapping("/import")
-	public String importFields() throws MessagingException, IOException {
+	public String importFields() throws MessagingException, IOException, SQLException {
 		mailService.importFields();
 		return "Done!";
 	}

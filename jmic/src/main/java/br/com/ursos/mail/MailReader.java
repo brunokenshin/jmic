@@ -8,6 +8,7 @@ import static br.com.ursos.config.MailConfigurationEnum.USERNAME;
 import static br.com.ursos.config.MailConfigurationEnum.getConfigValue;
 import static javax.mail.Folder.READ_ONLY;
 
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.mail.Folder;
@@ -31,7 +32,7 @@ public class MailReader {
 		this.configService = configService;
 	}
 
-	public Message[] getEmails() throws MessagingException {
+	public Message[] getEmails() throws MessagingException, SQLException {
 		Properties props = configService.getMailConnectionProperties();
 
 		final String host = getConfigValue(props, HOST);

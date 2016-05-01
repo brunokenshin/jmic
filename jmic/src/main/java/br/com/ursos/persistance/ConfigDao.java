@@ -1,5 +1,10 @@
 package br.com.ursos.persistance;
 
+import static br.com.ursos.persistance.TableNamesEnum.EXPORT_CONFIG;
+import static br.com.ursos.persistance.TableNamesEnum.MAIL_CONNECTION_CONFIG;
+import static br.com.ursos.persistance.TableNamesEnum.PARSER_CONFIG;
+
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +28,30 @@ public class ConfigDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public List<MailConfig> getMailConfigs() {
-		String sql = "SELECT * FROM MAIL_CONNECTION_CONFIG";
-		return jdbcTemplate.query(sql, new MailConfigRowMapper());
+	public List<MailConfig> getMailConfigs() throws SQLException {
+		String sql = "SELECT * FROM " + MAIL_CONNECTION_CONFIG;
+		try {
+			return jdbcTemplate.query(sql, new MailConfigRowMapper());
+		} catch (Exception e) {
+			throw new SQLException("Error while getting mail configs from database", e);
+		}
 	}
 
-	public List<ParserFieldConfig> getParserConfigs() {
-		String sql = "select * from PARSER_CONFIG";
-		return jdbcTemplate.query(sql, new ParserFieldConfigRowMapper());
+	public List<ParserFieldConfig> getParserConfigs() throws SQLException {
+		String sql = "select * from " + PARSER_CONFIG;
+		try {
+			return jdbcTemplate.query(sql, new ParserFieldConfigRowMapper());
+		} catch (Exception e) {
+			throw new SQLException("Error while getting parser configs from database", e);
+		}
 	}
 
-	public List<ExportConfig> getExportConfigs() {
-		String sql = "select * from EXPORT_CONFIG";
-		return jdbcTemplate.query(sql, new ExportConfigRowMapper());
+	public List<ExportConfig> getExportConfigs() throws SQLException {
+		String sql = "select * from " + EXPORT_CONFIG;
+		try {
+			return jdbcTemplate.query(sql, new ExportConfigRowMapper());
+		} catch (Exception e) {
+			throw new SQLException("Error while getting export configs from database", e);
+		}
 	}
 }

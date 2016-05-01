@@ -15,6 +15,7 @@ import static br.com.ursos.config.MailConfigurationEnum.SSL_ENABLE;
 import static br.com.ursos.config.MailConfigurationEnum.USERNAME;
 import static org.junit.Assert.assertTrue;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class ConfigDaoTest {
 	private ConfigDao dao;
 
 	@Test
-	public void testGetMailConfigs() {
+	public void testGetMailConfigs() throws SQLException {
 		List<MailConfig> configs = dao.getMailConfigs();
 		ArrayList<MailConfig> expectedConfigs = new ArrayList<MailConfig>();
 		expectedConfigs.add(new MailConfig(HOST.configName, "imap.gmail.com"));
@@ -59,7 +60,7 @@ public class ConfigDaoTest {
 	}
 
 	@Test
-	public void testGetParserConfigs() {
+	public void testGetParserConfigs() throws SQLException {
 		List<ParserFieldConfig> configs = dao.getParserConfigs();
 
 		List<ParserFieldConfig> expectedConfigs = new ArrayList<ParserFieldConfig>();
@@ -72,7 +73,7 @@ public class ConfigDaoTest {
 	}
 
 	@Test
-	public void testGetExportConfigs() {
+	public void testGetExportConfigs() throws SQLException {
 		List<ExportConfig> configs = dao.getExportConfigs();
 		ArrayList<ExportConfig> expectedConfigs = new ArrayList<ExportConfig>();
 		expectedConfigs.add(new ExportConfig("NAME", "CLIENTE", "NOME"));

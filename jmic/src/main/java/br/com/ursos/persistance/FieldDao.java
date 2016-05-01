@@ -1,5 +1,7 @@
 package br.com.ursos.persistance;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -19,18 +21,28 @@ public class FieldDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public long createRow(String tableName) {
+	public long createRow(String tableName) throws SQLException {
 		String sql = "insert into " + tableName + "(ID) values (null)";
 		final PreparedStatementCreator statement = new PreparedStatementCreator(sql);
 		final KeyHolder holder = new GeneratedKeyHolder();
 
-		jdbcTemplate.update(statement, holder);
+		try {
+			jdbcTemplate.update(statement, holder);
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+
 		return holder.getKey().longValue();
 	}
 
-	public void updateRow(long rowId, Field field, ExportConfig exportConfig) {
+	public void updateRow(long rowId, Field field, ExportConfig exportConfig) throws SQLException {
 		final String sql = "update " + exportConfig.tableName + " set " + exportConfig.columnName + " = ? where id = " + rowId;
-		jdbcTemplate.update(sql, field.value);
+
+		try {
+			jdbcTemplate.update(sql, field.value);
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
 	}
 
 }

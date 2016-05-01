@@ -1,5 +1,6 @@
 package br.com.ursos.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class PersistService {
 	}
 
 	@Transactional
-	public void persistFields(FieldList fields) {
+	public void persistFields(FieldList fields) throws SQLException {
 		List<ExportConfig> exportConfigs = configService.getExportConfigs();
 		long rowId = fieldDao.createRow(exportConfigs.get(0).tableName);
 		

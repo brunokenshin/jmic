@@ -1,6 +1,7 @@
 package br.com.ursos.service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -32,7 +33,7 @@ public class MailService {
 		this.mailParser = mailParser;
 	}
 
-	public FieldList reportFields() throws MessagingException, IOException {
+	public FieldList reportFields() throws MessagingException, IOException, SQLException {
 		Message[] emails = mailReader.getEmails();
 		FieldList fields = new FieldList();
 		
@@ -43,15 +44,15 @@ public class MailService {
 		return fields;
 	}
 
-	public void importFields() throws MessagingException, IOException {
+	public void importFields() throws MessagingException, IOException, SQLException {
 		Message[] emails = mailReader.getEmails();
 		for (Message message : emails) {
 			persistService.persistFields(getMessageFields(message));
 		}
 	}
 
-	private FieldList getMessageFields(Message msg) throws IOException, MessagingException {
-		return mailParser.getMessageFields(msg, configService.getParserConfigs());
+	private FieldList getMessageFields(Message msg) throws SQLException, IOException, MessagingException {
+			return mailParser.getMessageFields(msg, configService.getParserConfigs());
 	}
 
 }
