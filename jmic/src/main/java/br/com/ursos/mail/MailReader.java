@@ -1,11 +1,11 @@
 package br.com.ursos.mail;
 
-import static br.com.ursos.config.ConfigurationEnum.HOST;
-import static br.com.ursos.config.ConfigurationEnum.INBOX_FOLDER;
-import static br.com.ursos.config.ConfigurationEnum.PASSWORD;
-import static br.com.ursos.config.ConfigurationEnum.PROTOCOL;
-import static br.com.ursos.config.ConfigurationEnum.USERNAME;
-import static br.com.ursos.config.ConfigurationEnum.getConfigValue;
+import static br.com.ursos.config.MailConfigurationEnum.HOST;
+import static br.com.ursos.config.MailConfigurationEnum.INBOX_FOLDER;
+import static br.com.ursos.config.MailConfigurationEnum.PASSWORD;
+import static br.com.ursos.config.MailConfigurationEnum.PROTOCOL;
+import static br.com.ursos.config.MailConfigurationEnum.USERNAME;
+import static br.com.ursos.config.MailConfigurationEnum.getConfigValue;
 import static javax.mail.Folder.READ_ONLY;
 
 import java.util.Properties;

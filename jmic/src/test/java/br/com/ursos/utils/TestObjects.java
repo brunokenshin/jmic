@@ -1,14 +1,14 @@
 package br.com.ursos.utils;
 
-import static br.com.ursos.config.ConfigurationEnum.HOST;
-import static br.com.ursos.config.ConfigurationEnum.INBOX_FOLDER;
-import static br.com.ursos.config.ConfigurationEnum.PASSWORD;
-import static br.com.ursos.config.ConfigurationEnum.PROTOCOL;
-import static br.com.ursos.config.ConfigurationEnum.SOCKET_FACTORY_CLASS;
-import static br.com.ursos.config.ConfigurationEnum.SOCKET_FACTORY_FALLBACK;
-import static br.com.ursos.config.ConfigurationEnum.SOCKET_FACTORY_PORT;
-import static br.com.ursos.config.ConfigurationEnum.SSL_ENABLE;
-import static br.com.ursos.config.ConfigurationEnum.USERNAME;
+import static br.com.ursos.config.MailConfigurationEnum.HOST;
+import static br.com.ursos.config.MailConfigurationEnum.INBOX_FOLDER;
+import static br.com.ursos.config.MailConfigurationEnum.PASSWORD;
+import static br.com.ursos.config.MailConfigurationEnum.PROTOCOL;
+import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_CLASS;
+import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_FALLBACK;
+import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_PORT;
+import static br.com.ursos.config.MailConfigurationEnum.SSL_ENABLE;
+import static br.com.ursos.config.MailConfigurationEnum.USERNAME;
 
 import java.util.Properties;
 

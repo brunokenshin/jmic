@@ -1,18 +1,18 @@
 package br.com.ursos.persistance;
 
-import static br.com.ursos.config.ConfigurationEnum.FILTER_DAYS_AGO;
-import static br.com.ursos.config.ConfigurationEnum.FILTER_SENDER;
-import static br.com.ursos.config.ConfigurationEnum.FILTER_SUBJECT;
-import static br.com.ursos.config.ConfigurationEnum.FILTER_UNREAD;
-import static br.com.ursos.config.ConfigurationEnum.HOST;
-import static br.com.ursos.config.ConfigurationEnum.INBOX_FOLDER;
-import static br.com.ursos.config.ConfigurationEnum.PASSWORD;
-import static br.com.ursos.config.ConfigurationEnum.PROTOCOL;
-import static br.com.ursos.config.ConfigurationEnum.SOCKET_FACTORY_CLASS;
-import static br.com.ursos.config.ConfigurationEnum.SOCKET_FACTORY_FALLBACK;
-import static br.com.ursos.config.ConfigurationEnum.SOCKET_FACTORY_PORT;
-import static br.com.ursos.config.ConfigurationEnum.SSL_ENABLE;
-import static br.com.ursos.config.ConfigurationEnum.USERNAME;
+import static br.com.ursos.config.MailConfigurationEnum.FILTER_DAYS_AGO;
+import static br.com.ursos.config.MailConfigurationEnum.FILTER_SENDER;
+import static br.com.ursos.config.MailConfigurationEnum.FILTER_SUBJECT;
+import static br.com.ursos.config.MailConfigurationEnum.FILTER_UNREAD;
+import static br.com.ursos.config.MailConfigurationEnum.HOST;
+import static br.com.ursos.config.MailConfigurationEnum.INBOX_FOLDER;
+import static br.com.ursos.config.MailConfigurationEnum.PASSWORD;
+import static br.com.ursos.config.MailConfigurationEnum.PROTOCOL;
+import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_CLASS;
+import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_FALLBACK;
+import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_PORT;
+import static br.com.ursos.config.MailConfigurationEnum.SSL_ENABLE;
+import static br.com.ursos.config.MailConfigurationEnum.USERNAME;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;

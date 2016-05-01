@@ -1,18 +1,18 @@
 package br.com.ursos.service;
 
-import static br.com.ursos.config.ConfigurationEnum.FILTER_DAYS_AGO;
-import static br.com.ursos.config.ConfigurationEnum.FILTER_SENDER;
-import static br.com.ursos.config.ConfigurationEnum.FILTER_SUBJECT;
-import static br.com.ursos.config.ConfigurationEnum.FILTER_UNREAD;
-import static br.com.ursos.config.ConfigurationEnum.HOST;
-import static br.com.ursos.config.ConfigurationEnum.INBOX_FOLDER;
-import static br.com.ursos.config.ConfigurationEnum.PASSWORD;
-import static br.com.ursos.config.ConfigurationEnum.PROTOCOL;
-import static br.com.ursos.config.ConfigurationEnum.SOCKET_FACTORY_CLASS;
-import static br.com.ursos.config.ConfigurationEnum.SOCKET_FACTORY_FALLBACK;
-import static br.com.ursos.config.ConfigurationEnum.SOCKET_FACTORY_PORT;
-import static br.com.ursos.config.ConfigurationEnum.SSL_ENABLE;
-import static br.com.ursos.config.ConfigurationEnum.USERNAME;
+import static br.com.ursos.config.MailConfigurationEnum.FILTER_DAYS_AGO;
+import static br.com.ursos.config.MailConfigurationEnum.FILTER_SENDER;
+import static br.com.ursos.config.MailConfigurationEnum.FILTER_SUBJECT;
+import static br.com.ursos.config.MailConfigurationEnum.FILTER_UNREAD;
+import static br.com.ursos.config.MailConfigurationEnum.HOST;
+import static br.com.ursos.config.MailConfigurationEnum.INBOX_FOLDER;
+import static br.com.ursos.config.MailConfigurationEnum.PASSWORD;
+import static br.com.ursos.config.MailConfigurationEnum.PROTOCOL;
+import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_CLASS;
+import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_FALLBACK;
+import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_PORT;
+import static br.com.ursos.config.MailConfigurationEnum.SSL_ENABLE;
+import static br.com.ursos.config.MailConfigurationEnum.USERNAME;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -46,16 +46,18 @@ public class ConfigurationServiceTest {
 		when(dao.getMailConfigs()).thenReturn(populateMailConfigs());
 		
 		Properties configs = service.getMailConnectionProperties();
+
+		assertEquals(9, configs.size());
+
+		assertEquals("imap.gmail.com", configs.getProperty(HOST.configName));
+		assertEquals("INBOX", configs.getProperty(INBOX_FOLDER.configName));
+		assertEquals("bruce.wayne@waynecorp.com", configs.getProperty(USERNAME.configName));
 		assertEquals("alfred", configs.getProperty(PASSWORD.configName));
 		assertEquals("imaps", configs.getProperty(PROTOCOL.configName));
 		assertEquals("true", configs.getProperty(SSL_ENABLE.configName));
 		assertEquals("javax.net.ssl.SSLSocketFactory", configs.getProperty(SOCKET_FACTORY_CLASS.configName));
 		assertEquals("false", configs.getProperty(SOCKET_FACTORY_FALLBACK.configName));
 		assertEquals("993", configs.getProperty(SOCKET_FACTORY_PORT.configName));
-		assertEquals("20", configs.getProperty(FILTER_DAYS_AGO.configName));
-		assertEquals("alfred@waynecorp.com", configs.getProperty(FILTER_SENDER.configName));
-		assertEquals("Joker", configs.getProperty(FILTER_SUBJECT.configName));
-		assertEquals("false", configs.getProperty(FILTER_UNREAD.configName));
 	}
 
 	@Test

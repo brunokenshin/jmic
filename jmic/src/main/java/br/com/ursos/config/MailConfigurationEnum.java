@@ -2,7 +2,7 @@ package br.com.ursos.config;
 
 import java.util.Properties;
 
-public enum ConfigurationEnum {
+public enum MailConfigurationEnum {
 
     // MAIL CONFIGS
     HOST("host"),
@@ -21,11 +21,11 @@ public enum ConfigurationEnum {
 
     public final String configName;
 
-    private ConfigurationEnum(String configName) {
+    private MailConfigurationEnum(String configName) {
         this.configName = configName;
     }
 
-	public static String getConfigValue(Properties props, ConfigurationEnum config) {
+	public static String getConfigValue(Properties props, MailConfigurationEnum config) {
 		try {
 			return props.getProperty(config.configName);
 		} catch (Exception e) {
