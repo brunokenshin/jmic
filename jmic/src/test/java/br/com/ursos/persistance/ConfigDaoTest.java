@@ -14,33 +14,84 @@ import static br.com.ursos.config.MailConfigurationEnum.SOCKET_FACTORY_PORT;
 import static br.com.ursos.config.MailConfigurationEnum.SSL_ENABLE;
 import static br.com.ursos.config.MailConfigurationEnum.USERNAME;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import br.com.ursos.JmicApplication;
 import br.com.ursos.config.ExportConfig;
+import br.com.ursos.config.ExportConfigRowMapper;
 import br.com.ursos.config.MailConfig;
+import br.com.ursos.config.MailConfigRowMapper;
 import br.com.ursos.config.ParserFieldConfig;
+import br.com.ursos.config.ParserFieldConfigRowMapper;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = JmicApplication.class)
 public class ConfigDaoTest {
 
-	@Autowired
 	private ConfigDao dao;
+	private JdbcTemplate jdbc;
+
+	@Before
+	public void setup() {
+		jdbc = mock(JdbcTemplate.class);
+		dao = new ConfigDao(jdbc);
+	}
 
 	@Test
 	public void testGetMailConfigs() throws SQLException {
+		ArrayList<MailConfig> expectedConfigs = getExpectedMailConfigs();
+		when(jdbc.query(anyString(), any(MailConfigRowMapper.class))).thenReturn(expectedConfigs);
+
 		List<MailConfig> configs = dao.getMailConfigs();
+		assertTrue(EqualsBuilder.reflectionEquals(expectedConfigs, configs));
+	}
+
+	@Test(expected = SQLException.class)
+	public void testErrorWhileGettingMailConfigs() throws SQLException {
+		when(jdbc.query(anyString(), any(MailConfigRowMapper.class))).thenThrow(new RuntimeException());
+		dao.getMailConfigs();
+	}
+
+	@Test
+	public void testGetParserConfigs() throws SQLException {
+		List<ParserFieldConfig> expectedConfigs = getExpectedParserConfigs();
+		when(jdbc.query(anyString(), any(ParserFieldConfigRowMapper.class))).thenReturn(expectedConfigs);
+
+		List<ParserFieldConfig> configs = dao.getParserConfigs();
+		assertTrue(EqualsBuilder.reflectionEquals(expectedConfigs, configs));
+	}
+
+	@Test(expected = SQLException.class)
+	public void testErrorWhileGettingParserConfigs() throws SQLException {
+		when(jdbc.query(anyString(), any(MailConfigRowMapper.class))).thenThrow(new RuntimeException());
+		dao.getParserConfigs();
+	}
+
+	@Test
+	public void testGetExportConfigs() throws SQLException {
+		ArrayList<ExportConfig> expectedConfigs = getExpectedExportConfigs();
+		when(jdbc.query(anyString(), any(ExportConfigRowMapper.class))).thenReturn(expectedConfigs);
+
+		List<ExportConfig> configs = dao.getExportConfigs();
+		assertTrue(EqualsBuilder.reflectionEquals(expectedConfigs, configs));
+	}
+
+	@Test(expected = SQLException.class)
+	public void testErrorWhileGettingExportConfigs() throws SQLException {
+		when(jdbc.query(anyString(), any(MailConfigRowMapper.class))).thenThrow(new RuntimeException());
+		dao.getExportConfigs();
+	}
+
+	private ArrayList<MailConfig> getExpectedMailConfigs() {
 		ArrayList<MailConfig> expectedConfigs = new ArrayList<MailConfig>();
 		expectedConfigs.add(new MailConfig(HOST.configName, "imap.gmail.com"));
 		expectedConfigs.add(new MailConfig(INBOX_FOLDER.configName, "INBOX"));
@@ -55,33 +106,25 @@ public class ConfigDaoTest {
 		expectedConfigs.add(new MailConfig(FILTER_SENDER.configName, "alfred@waynecorp.com"));
 		expectedConfigs.add(new MailConfig(FILTER_SUBJECT.configName, "Joker"));
 		expectedConfigs.add(new MailConfig(FILTER_UNREAD.configName, "false"));
-
-		assertTrue(EqualsBuilder.reflectionEquals(expectedConfigs, configs));
+		return expectedConfigs;
 	}
 
-	@Test
-	public void testGetParserConfigs() throws SQLException {
-		List<ParserFieldConfig> configs = dao.getParserConfigs();
-
+	private List<ParserFieldConfig> getExpectedParserConfigs() {
 		List<ParserFieldConfig> expectedConfigs = new ArrayList<ParserFieldConfig>();
 		expectedConfigs.add(new ParserFieldConfig("NAME", "Nome: ", "\r"));
 		expectedConfigs.add(new ParserFieldConfig("PHONE", "Telefone: ", "\r"));
 		expectedConfigs.add(new ParserFieldConfig("EMAIL", "Email: ", "\r"));
 		expectedConfigs.add(new ParserFieldConfig("LOCATION", "Ebdereço: ", "\r"));
-
-		assertTrue(EqualsBuilder.reflectionEquals(expectedConfigs, configs));
+		return expectedConfigs;
 	}
 
-	@Test
-	public void testGetExportConfigs() throws SQLException {
-		List<ExportConfig> configs = dao.getExportConfigs();
+	private ArrayList<ExportConfig> getExpectedExportConfigs() {
 		ArrayList<ExportConfig> expectedConfigs = new ArrayList<ExportConfig>();
 		expectedConfigs.add(new ExportConfig("NAME", "CLIENTE", "NOME"));
 		expectedConfigs.add(new ExportConfig("PHONE", "CLIENTE", "TELEFONE"));
 		expectedConfigs.add(new ExportConfig("EMAIL", "CLIENTE", "EMAIL"));
 		expectedConfigs.add(new ExportConfig("LOCATION", "CLIENTE", "ENDERECO"));
-		
-		assertTrue(EqualsBuilder.reflectionEquals(expectedConfigs, configs));
+		return expectedConfigs;
 	}
 
 }
