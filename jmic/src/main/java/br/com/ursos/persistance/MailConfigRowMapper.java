@@ -1,9 +1,11 @@
-package br.com.ursos.config;
+package br.com.ursos.persistance;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import br.com.ursos.config.MailConfig;
 
 public class MailConfigRowMapper implements RowMapper<MailConfig> {
 

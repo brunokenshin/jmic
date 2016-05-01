@@ -29,11 +29,8 @@ import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import br.com.ursos.config.ExportConfig;
-import br.com.ursos.config.ExportConfigRowMapper;
 import br.com.ursos.config.MailConfig;
-import br.com.ursos.config.MailConfigRowMapper;
 import br.com.ursos.config.ParserFieldConfig;
-import br.com.ursos.config.ParserFieldConfigRowMapper;
 
 public class ConfigDaoTest {
 

@@ -1,8 +1,8 @@
 package br.com.ursos.persistance;
 
-import static br.com.ursos.persistance.TableNamesEnum.EXPORT_CONFIG;
-import static br.com.ursos.persistance.TableNamesEnum.MAIL_CONNECTION_CONFIG;
-import static br.com.ursos.persistance.TableNamesEnum.PARSER_CONFIG;
+import static br.com.ursos.persistance.ConfigTableNamesEnum.EXPORT_CONFIG;
+import static br.com.ursos.persistance.ConfigTableNamesEnum.MAIL_CONNECTION_CONFIG;
+import static br.com.ursos.persistance.ConfigTableNamesEnum.PARSER_CONFIG;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,11 +12,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import br.com.ursos.config.ExportConfig;
-import br.com.ursos.config.ExportConfigRowMapper;
 import br.com.ursos.config.MailConfig;
-import br.com.ursos.config.MailConfigRowMapper;
 import br.com.ursos.config.ParserFieldConfig;
-import br.com.ursos.config.ParserFieldConfigRowMapper;
 
 @Component
 public class ConfigDao {

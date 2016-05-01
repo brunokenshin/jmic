@@ -1,6 +1,6 @@
 package br.com.ursos.persistance;
 
-public enum TableNamesEnum {
+public enum ConfigTableNamesEnum {
 
 	MAIL_CONNECTION_CONFIG,
 	PARSER_CONFIG,
