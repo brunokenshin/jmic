@@ -15,9 +15,12 @@ import static br.com.ursos.config.MailConfigurationEnum.SSL_ENABLE;
 import static br.com.ursos.config.MailConfigurationEnum.USERNAME;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +33,7 @@ import br.com.ursos.persistance.ConfigDao;
 @Component
 public class ConfigurationService {
 
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private ConfigDao configDao;
 
 	@Autowired
@@ -59,12 +63,18 @@ public class ConfigurationService {
 	}
 
 	public MailFilterConfigs getFilterConfigs() throws SQLException {
-		List<MailConfig> configs = configDao.getMailConfigs();
+		List<MailConfig> configs = new ArrayList<MailConfig>();
 
-		String sender = null;
-		String subject = null;
-		String daysAgo = null;
-		String unread = null;
+		try {
+			configs = configDao.getMailConfigs();
+		} catch (Exception e) {
+			logger.warn("Error while getting filter configs, returning empty filters", e);
+		}
+
+		String sender = new String();
+		String subject = new String();
+		String daysAgo = new String();
+		String unread = new String();
 
 		for (MailConfig config : configs) {
 			if (FILTER_SENDER.configName.equalsIgnoreCase(config.name)) {

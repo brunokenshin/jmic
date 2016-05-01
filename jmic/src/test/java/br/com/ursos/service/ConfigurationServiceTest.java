@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -70,6 +71,17 @@ public class ConfigurationServiceTest {
 		assertEquals("alfred@waynecorp.com", configs.sender);
 		assertEquals("Joker", configs.subject);
 		assertEquals("false", configs.unread);
+	}
+
+	@Test
+	public void testReturnEmptyConfigsIfErrorHappensWhileGettingFilterConfigs() throws Exception {
+		when(dao.getMailConfigs()).thenThrow(new RuntimeException());
+
+		MailFilterConfigs configs = service.getFilterConfigs();
+		assertEquals(StringUtils.EMPTY, configs.daysAgo);
+		assertEquals(StringUtils.EMPTY, configs.sender);
+		assertEquals(StringUtils.EMPTY, configs.subject);
+		assertEquals(StringUtils.EMPTY, configs.unread);
 	}
 
 	@Test

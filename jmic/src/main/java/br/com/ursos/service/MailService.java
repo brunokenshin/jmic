@@ -44,7 +44,7 @@ public class MailService {
 		return fields;
 	}
 
-	public void importFields() throws MessagingException, IOException, SQLException {
+	public void persistFields() throws MessagingException, IOException, SQLException {
 		Message[] emails = mailReader.getEmails();
 		for (Message message : emails) {
 			persistService.persistFields(getMessageFields(message));

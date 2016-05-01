@@ -34,9 +34,9 @@ public class PersistService {
 				if (field.name.equals(config.parserName)) {
 					fieldDao.updateRow(rowId, field, config);
 				}
-
 			}
 		}
+
 	}
 
 }
