@@ -39,19 +39,27 @@ public class MailService {
 	public FieldList reportFields() throws MessagingException, IOException, SQLException {
 		Message[] emails = mailReader.getEmails();
 		FieldList fields = new FieldList();
-		
 		for (Message message : emails) {
-			fields.addAll(getMessageFields(message));
+			report(fields, message);
 		}
-
 		return fields;
+	}
+
+	private void report(FieldList fields, Message message) throws IOException, MessagingException, SQLException {
+		try {
+			fields.addAll(getMessageFields(message));
+		} catch (Exception e) {
+			logger.error(String.format(
+					"Error during fields reporting for message. "
+					+ "Fields for this message will be skipped [msgSubject=%s, msgSender=%s, msgDate=%s]",
+					message.getSubject(), message.getFrom(), message.getReceivedDate()), e);
+		}
 	}
 
 	public void persistFields() throws MessagingException, IOException, SQLException {
 		Message[] emails = mailReader.getEmails();
 		for (Message message : emails) {
 			persist(message);
-
 		}
 	}
 
@@ -66,12 +74,8 @@ public class MailService {
 		}
 	}
 
-	private FieldList getMessageFields(Message msg) throws SQLException, IOException, MessagingException {
-		try {
-			return mailParser.getMessageFields(msg, configService.getParserConfigs());
-		} catch (Exception e) {
-			return new FieldList();
-		}
+	private FieldList getMessageFields(Message msg) throws IOException, MessagingException, SQLException {
+		return mailParser.getMessageFields(msg, configService.getParserConfigs());
 	}
 
 }
