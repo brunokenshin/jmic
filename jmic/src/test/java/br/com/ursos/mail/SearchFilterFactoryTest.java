@@ -1,4 +1,4 @@
-package br.com.ursos;
+package br.com.ursos.mail;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

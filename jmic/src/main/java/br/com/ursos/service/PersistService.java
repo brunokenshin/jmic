@@ -26,7 +26,7 @@ public class PersistService {
 	@Transactional
 	public void persistFields(FieldList fields) {
 		List<ExportConfig> exportConfigs = configService.getExportConfigs();
-		long rowId = fieldDao.createRow(exportConfigs);
+		long rowId = fieldDao.createRow(exportConfigs.get(0).tableName);
 		
 		for (ExportConfig config : exportConfigs) {
 			for (Field field : fields) {

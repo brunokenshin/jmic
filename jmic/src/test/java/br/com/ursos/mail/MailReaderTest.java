@@ -30,7 +30,7 @@ public class MailReaderTest {
 	public void test_invalid_protocol() throws MessagingException {
 		Properties props = createPropertiesForProtocol("invalid+protocol");
 
-		when(configService.getMailConnectionConfigs()).thenReturn(props);
+		when(configService.getMailConnectionProperties()).thenReturn(props);
 
 		mailReader = new MailReader(configService);
 		mailReader.getEmails();
@@ -42,7 +42,7 @@ public class MailReaderTest {
 	public void test_invalid_host() throws Exception {
 		Properties props = createPropertiesForHost("invalid_host");
 
-		when(configService.getMailConnectionConfigs()).thenReturn(props);
+		when(configService.getMailConnectionProperties()).thenReturn(props);
 
 		mailReader = new MailReader(configService);
 		mailReader.getEmails();

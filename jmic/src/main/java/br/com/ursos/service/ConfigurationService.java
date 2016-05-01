@@ -27,7 +27,7 @@ public class ConfigurationService {
 		this.configDao = configDao;
 	}
 
-	public Properties getMailConnectionConfigs() {
+	public Properties getMailConnectionProperties() {
 		List<MailConfig> mailConfigs = configDao.getMailConfigs();
 		Properties props = new Properties();
 

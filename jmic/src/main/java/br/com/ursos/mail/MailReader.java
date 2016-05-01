@@ -32,7 +32,7 @@ public class MailReader {
 	}
 
 	public Message[] getEmails() throws MessagingException {
-		Properties props = configService.getMailConnectionConfigs();
+		Properties props = configService.getMailConnectionProperties();
 
 		final String host = getConfigValue(props, HOST);
 		final String username = getConfigValue(props, USERNAME);

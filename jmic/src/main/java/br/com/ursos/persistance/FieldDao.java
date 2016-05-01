@@ -1,7 +1,5 @@
 package br.com.ursos.persistance;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -21,8 +19,8 @@ public class FieldDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public long createRow(List<ExportConfig> exportConfigs) {
-		String sql = "insert into " + exportConfigs.get(0).tableName + "(ID) values (null)";
+	public long createRow(String tableName) {
+		String sql = "insert into " + tableName + "(ID) values (null)";
 		final PreparedStatementCreator statement = new PreparedStatementCreator(sql);
 		final KeyHolder holder = new GeneratedKeyHolder();
 
