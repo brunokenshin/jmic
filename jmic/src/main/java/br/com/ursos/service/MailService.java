@@ -67,7 +67,11 @@ public class MailService {
 	}
 
 	private FieldList getMessageFields(Message msg) throws SQLException, IOException, MessagingException {
-		return mailParser.getMessageFields(msg, configService.getParserConfigs());
+		try {
+			return mailParser.getMessageFields(msg, configService.getParserConfigs());
+		} catch (Exception e) {
+			return new FieldList();
+		}
 	}
 
 }

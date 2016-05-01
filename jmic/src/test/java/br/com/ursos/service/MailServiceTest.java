@@ -12,6 +12,7 @@ import javax.mail.Message;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.ursos.config.ParserFieldConfig;
@@ -69,9 +70,26 @@ public class MailServiceTest {
 	}
 
 	@Test
+	public void testIgnoreFieldsOnErrorWhileReporting() throws Exception {
+		when(mailParser.getMessageFields(msgs[0], fieldsConfigs)).thenThrow(new RuntimeException());
+		assertTrue(EqualsBuilder.reflectionEquals(fieldList2, service.reportFields()));
+
+	}
+
+	@Test
 	public void testPersistFields() throws Exception {
 		service.persistFields();
 		verify(persistService).persistFields(fieldList1);
+		verify(persistService).persistFields(fieldList2);
+	}
+
+	@Test
+	@Ignore // TODO: Search how to test this case
+	public void testIgnoreMessageFieldsOnErrorWhilePersisting() throws Exception {
+		when(mailParser.getMessageFields(msgs[0], fieldsConfigs)).thenThrow(new RuntimeException());
+
+		service.persistFields();
+		verify(persistService).persistFields(fieldList1); //This method call must be done but ignored because of the exception
 		verify(persistService).persistFields(fieldList2);
 	}
 
