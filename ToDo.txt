@@ -9,13 +9,9 @@ ToDo:
 	- Testar o deploy e funcionamento no openShift
 
 - Testes:
-	- ConfigurationService
-	- PersistService
-	- FieldDao
-	- ConfigDao
+	- Testar o comportamento de ignorar mensagem se falhar a persistência dela.
 	- MailParser
 	- Controller
-	- Adicionar o H2 ou qualquer banco em memória para os testes integrados.
 
 - Melhorias:
 	- Ver como aproveitar melhor os recursos do Java 8

@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import br.com.ursos.mail.MailReader;
 @Service
 public class MailService {
 
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final ConfigurationService configService;
 	private final PersistService persistService;
 	private final MailReader mailReader;
@@ -47,12 +50,24 @@ public class MailService {
 	public void persistFields() throws MessagingException, IOException, SQLException {
 		Message[] emails = mailReader.getEmails();
 		for (Message message : emails) {
+			persist(message);
+
+		}
+	}
+
+	private void persist(Message message) throws MessagingException {
+		try {
 			persistService.persistFields(getMessageFields(message));
+		} catch (Exception e) {
+			logger.error(String.format(
+					"Error during fields persistance for message. "
+					+ "Fields for this message will be skipped [msgSubject=%s, msgSender=%, msgDate=%s]",
+					message.getSubject(), message.getFrom(), message.getReceivedDate()), e);
 		}
 	}
 
 	private FieldList getMessageFields(Message msg) throws SQLException, IOException, MessagingException {
-			return mailParser.getMessageFields(msg, configService.getParserConfigs());
+		return mailParser.getMessageFields(msg, configService.getParserConfigs());
 	}
 
 }
