@@ -59,5 +59,8 @@ For google accounts maybe you need to active the "Less secure apps" option:
 - https://gusto77.wordpress.com/2012/04/03/extracting-text-from-email-message-with-javamail/
 - http://stackoverflow.com/questions/870045/java-imap-fetch-messages-since-a-date
 
+# Mirror:
+- https://gitlab.com/brunokenshin/jmic
+
 # Build Information:
 [![wercker status](https://app.wercker.com/status/2fd82aede5750d80a0e51d1df3e85835/m "wercker status")](https://app.wercker.com/project/bykey/2fd82aede5750d80a0e51d1df3e85835)
