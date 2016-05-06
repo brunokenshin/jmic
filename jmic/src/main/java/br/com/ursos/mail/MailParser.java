@@ -73,6 +73,16 @@ public class MailParser {
 		return result;
 	}
 
+	public FieldList getMessageFields(Message msg, List<ParserFieldConfig> fieldsConfigs)
+			throws IOException, MessagingException {
+		FieldList fields = new FieldList();
+		for (ParserFieldConfig config : fieldsConfigs) {
+			fields.add(getMessageField(msg, config));
+		}
+
+		return fields;
+	}
+
 	private Field getMessageField(Message msg, ParserFieldConfig fieldConfig) throws IOException, MessagingException {
 		String msgText = parseMailToString(msg);
 
@@ -90,13 +100,4 @@ public class MailParser {
 		throw new RuntimeException("Field not found: " + fieldConfig);
 	}
 	
-	public FieldList getMessageFields(Message msg, List<ParserFieldConfig> fieldsConfigs) throws IOException, MessagingException {
-		FieldList fields = new FieldList();
-		for(ParserFieldConfig config : fieldsConfigs) {
-			fields.add(getMessageField(msg, config));
-		}
-		
-		return fields;
-	}
-
 }

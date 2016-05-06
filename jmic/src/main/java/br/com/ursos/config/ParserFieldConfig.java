@@ -1,5 +1,7 @@
 package br.com.ursos.config;
 
+import static br.com.ursos.config.SpecialParsePatternsEnum.LINEBREAK;
+
 public class ParserFieldConfig {
 
 	public final String fieldName;
@@ -8,8 +10,15 @@ public class ParserFieldConfig {
 
 	public ParserFieldConfig(String fieldName, String fieldStartPattern, String fieldEndPattern) {
 		this.fieldName = fieldName;
-		this.fieldStartPattern = fieldStartPattern;
-		this.fieldEndPattern = fieldEndPattern;
+		this.fieldStartPattern = verifyPatterns(fieldStartPattern);
+		this.fieldEndPattern = verifyPatterns(fieldEndPattern);
+	}
+
+	private String verifyPatterns(String pattern) {
+		if (LINEBREAK.name().equalsIgnoreCase(pattern)) {
+			return LINEBREAK.pattern;
+		}
+		return pattern;
 	}
 
 	@Override
