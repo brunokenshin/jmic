@@ -2,6 +2,9 @@ package br.com.ursos.config;
 
 import static br.com.ursos.config.SpecialParsePatternsEnum.LINEBREAK;
 
+import org.apache.commons.lang3.StringUtils;
+
+
 public class ParserFieldConfig {
 
 	public final String fieldName;
@@ -15,10 +18,10 @@ public class ParserFieldConfig {
 	}
 
 	private String verifyPatterns(String pattern) {
-		if (LINEBREAK.name().equalsIgnoreCase(pattern)) {
-			return LINEBREAK.pattern;
-		}
-		return pattern;
+        if (StringUtils.containsIgnoreCase(pattern, LINEBREAK.name())) {
+            return pattern.replace(LINEBREAK.name(), System.lineSeparator());
+        }
+        return pattern;
 	}
 
 	@Override

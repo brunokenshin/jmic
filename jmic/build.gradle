@@ -47,12 +47,12 @@ dependencies {
 	runtime('mysql:mysql-connector-java')
 
 	compile('org.jsoup:jsoup:1.8.3')
+	compile('org.apache.commons:commons-lang3:3.4')
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	compile('org.springframework.boot:spring-boot-starter-web')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
-	testCompile('org.apache.commons:commons-lang3:3.4')
 	testCompile('com.h2database:h2:1.4.191')
 	
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
