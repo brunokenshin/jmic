@@ -3,6 +3,8 @@ JMIC is a simple webapp to extract important information from emails using speci
 
 Project uses Java 7, Spring Boot as core framework application, gradle 2.12 as building tool and Maven Central as dependencies repository.
 
+It generates a '.war' file that can be depployed into a servlet-container like Tomcat. JMIC uses MySQL but you can change for another SQL database.
+
 # Limitations:
 - Must be only one persistance table for all fields
 - Persistance table MUST have column "ID" (Primary Key) and it must be the ONLY "NOT NULL" column.
