@@ -2,9 +2,11 @@ package br.com.ursos.config;
 
 import java.util.Properties;
 
+import org.apache.commons.lang3.StringUtils;
+
+
 public enum MailConfigurationEnum {
 
-    // MAIL CONFIGS
     HOST("host"),
     INBOX_FOLDER("inboxfolder"),
     USERNAME("username"),
@@ -26,11 +28,12 @@ public enum MailConfigurationEnum {
     }
 
 	public static String getConfigValue(Properties props, MailConfigurationEnum config) {
-		try {
-			return props.getProperty(config.configName);
-		} catch (Exception e) {
-			throw new RuntimeException("Config not Found: " + config.configName);
-		}
+        String propertyValue = props.getProperty(config.configName);
+       
+        if (StringUtils.isBlank(propertyValue)) {
+            return "";
+        }
+        return propertyValue;
 	}
 	
 }
