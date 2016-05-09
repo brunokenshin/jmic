@@ -10,9 +10,9 @@ It generates a '.war' file that can be depployed into a servlet-container like T
 - Persistance table MUST have column "ID" (Primary Key) and it must be the ONLY "NOT NULL" column.
 
 # Dependencies:
-- org.jsoup:jsoup:1.8.3
 - mysql:mysql-connector-java
 - com.h2database:h2:1.4.191
+- org.apache.commons:commons-email:1.4
 - org.apache.commons:commons-lang3:3.4
 - org.springframework.boot:spring-boot-starter-jdbc
 - org.springframework.boot:spring-boot-starter-mail
