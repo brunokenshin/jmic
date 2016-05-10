@@ -18,9 +18,10 @@ public class ParserFieldConfig {
 	}
 
 	private String verifyPatterns(String pattern) {
-        if (StringUtils.containsIgnoreCase(pattern, LINEBREAK.name())) {
-            return pattern.replace(LINEBREAK.name(), System.lineSeparator());
-        }
+		if (StringUtils.containsIgnoreCase(pattern, LINEBREAK.name())) {
+			pattern = pattern.replace(LINEBREAK.name(), LINEBREAK.pattern);
+		}
+
         return pattern;
 	}
 
