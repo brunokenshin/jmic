@@ -1,7 +1,7 @@
 package br.com.ursos.mail;
 
-import static java.util.regex.Pattern.CASE_INSENSITIVE;
 import static java.util.regex.Pattern.DOTALL;
+import static java.util.regex.Pattern.MULTILINE;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -45,11 +45,11 @@ public class MailParser {
 	}
 
 	private Field getMessageField(Message msg, ParserFieldConfig fieldConfig) throws Exception {
-		String msgText = parseMailToString(msg);
+		String msgText = linebreakTransform(parseMailToString(msg));
 
 		String startPattern = Pattern.quote(fieldConfig.fieldStartPattern);
 		String endPattern = Pattern.quote(fieldConfig.fieldEndPattern);
-		Pattern pattern = Pattern.compile(startPattern + "(.*?)" + endPattern, CASE_INSENSITIVE | DOTALL);
+		Pattern pattern = Pattern.compile(startPattern + "(.*?)" + endPattern, MULTILINE | DOTALL);
 
 		Matcher matcher = pattern.matcher(msgText);
 
@@ -59,6 +59,12 @@ public class MailParser {
 
 		logger.error("Field " + fieldConfig + " not found in message: " + msg);
 		throw new RuntimeException("Field not found: " + fieldConfig);
+	}
+
+	private String linebreakTransform(String text) {
+		text = text.replace("\r\n", "\n");
+		text = text.replace("\r", "\n");
+		return text;
 	}
 	
 }
