@@ -34,7 +34,9 @@
 
 <p>JMIC is a simple webapp to extract important information from emails using specific patterns.</p>
 
-<p>Project uses Java 8, Spring Boot as the core framework application, gradle 2.12 as building tool, Maven Central repositories for downloading dependencies.</p>
+<p>Project uses Java 7, Spring Boot as core framework application, gradle 2.12 as building tool and Maven Central as dependencies repository.</p>
+
+<p>It generates a '.war' file that can be depployed into a servlet-container like Tomcat. JMIC uses MySQL but you can change for another SQL database.</p>
 
 <h1>
 <a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Limitations:</h1>
@@ -48,9 +50,9 @@
 <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies:</h1>
 
 <ul>
-<li>org.jsoup:jsoup:1.8.3</li>
 <li>mysql:mysql-connector-java</li>
 <li>com.h2database:h2:1.4.191</li>
+<li>org.apache.commons:commons-email:1.4</li>
 <li>org.apache.commons:commons-lang3:3.4</li>
 <li>org.springframework.boot:spring-boot-starter-jdbc</li>
 <li>org.springframework.boot:spring-boot-starter-mail</li>
@@ -144,6 +146,13 @@
 <li><a href="http://www.oracle.com/technetwork/java/javamail/faq/index.html#gmail">http://www.oracle.com/technetwork/java/javamail/faq/index.html#gmail</a></li>
 <li><a href="https://gusto77.wordpress.com/2012/04/03/extracting-text-from-email-message-with-javamail/">https://gusto77.wordpress.com/2012/04/03/extracting-text-from-email-message-with-javamail/</a></li>
 <li><a href="http://stackoverflow.com/questions/870045/java-imap-fetch-messages-since-a-date">http://stackoverflow.com/questions/870045/java-imap-fetch-messages-since-a-date</a></li>
+</ul>
+
+<h1>
+<a id="mirrors" class="anchor" href="#mirrors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mirrors:</h1>
+
+<ul>
+<li><a href="https://gitlab.com/brunokenshin/jmic">https://gitlab.com/brunokenshin/jmic</a></li>
 </ul>
 
 <h1>
