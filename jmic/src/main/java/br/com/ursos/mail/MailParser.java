@@ -1,8 +1,5 @@
 package br.com.ursos.mail;
 
-import static java.util.regex.Pattern.DOTALL;
-import static java.util.regex.Pattern.MULTILINE;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,15 +43,11 @@ public class MailParser {
 
 	private Field getMessageField(Message msg, ParserFieldConfig fieldConfig) throws Exception {
 		String msgText = linebreakTransform(parseMailToString(msg));
-
-		String startPattern = Pattern.quote(fieldConfig.fieldStartPattern);
-		String endPattern = Pattern.quote(fieldConfig.fieldEndPattern);
-		Pattern pattern = Pattern.compile(startPattern + "(.*?)" + endPattern, MULTILINE | DOTALL);
-
+		Pattern pattern = Pattern.compile(fieldConfig.startPattern + "(.*?)" + fieldConfig.endPattern);
 		Matcher matcher = pattern.matcher(msgText);
 
 		if (matcher.find()) {
-			return new Field(fieldConfig.fieldName, matcher.group(1).trim());
+			return new Field(fieldConfig.name, matcher.group(1).trim());
 		}
 
 		logger.error("Field " + fieldConfig + " not found in message: " + msg);

@@ -7,14 +7,14 @@ import org.apache.commons.lang3.StringUtils;
 
 public class ParserFieldConfig {
 
-	public final String fieldName;
-	public final String fieldStartPattern;
-	public final String fieldEndPattern;
+	public final String name;
+	public final String startPattern;
+	public final String endPattern;
 
 	public ParserFieldConfig(String fieldName, String fieldStartPattern, String fieldEndPattern) {
-		this.fieldName = fieldName;
-		this.fieldStartPattern = verifyPatterns(fieldStartPattern);
-		this.fieldEndPattern = verifyPatterns(fieldEndPattern);
+		this.name = fieldName;
+		this.startPattern = verifyPatterns(fieldStartPattern);
+		this.endPattern = verifyPatterns(fieldEndPattern);
 	}
 
 	private String verifyPatterns(String pattern) {
@@ -27,8 +27,7 @@ public class ParserFieldConfig {
 
 	@Override
 	public String toString() {
-		return String.format("[fieldName=%s, startPattern=%s, endPattern=%s]", fieldName, fieldStartPattern,
-				fieldEndPattern);
+		return String.format("[fieldName=%s, startPattern=%s, endPattern=%s]", name, startPattern, endPattern);
 	}
 
 }
