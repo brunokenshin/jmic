@@ -35,9 +35,11 @@ public class MailParser {
 	public FieldList getMessageFields(Message msg, List<ParserFieldConfig> fieldsConfigs) throws Exception {
 		FieldList fields = new FieldList();
 		for (ParserFieldConfig config : fieldsConfigs) {
-			fields.add(getMessageField(msg, config));
+			Field field = getMessageField(msg, config);
+			if (field.isValid()) {
+				fields.add(field);
+			}
 		}
-
 		return fields;
 	}
 
@@ -50,8 +52,8 @@ public class MailParser {
 			return new Field(fieldConfig.name, matcher.group(1).trim());
 		}
 
-		logger.error("Field " + fieldConfig + " not found in message: " + msg);
-		throw new RuntimeException("Field not found: " + fieldConfig);
+		logger.warn("Field " + fieldConfig + " not found in message: " + msg);
+		return new Field(null, null);
 	}
 
 	private String linebreakTransform(String text) {
