@@ -8,6 +8,7 @@ It generates a '.war' file that can be depployed into a servlet-container like T
 # Limitations:
 - Must be only one persistance table for all fields
 - Persistance table MUST have column "ID" (Primary Key) and it must be the ONLY "NOT NULL" column.
+- Since mail fields are matched using regular expressions, user must know its syntax. Maybe even java particularities for it like special character escapes.
 
 # Dependencies:
 - mysql:mysql-connector-java
