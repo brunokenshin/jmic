@@ -67,13 +67,13 @@ public class MailServiceTest {
 	public void testReportFields() throws Exception {
 		fieldList1.addAll(fieldList2);
 		assertTrue(EqualsBuilder.reflectionEquals(fieldList1, service.reportFields()));
+		verify(mailReader).closeConnection();
 	}
 
 	@Test
 	public void testIgnoreFieldsOnErrorWhileReporting() throws Exception {
 		when(mailParser.getMessageFields(msgs[0], fieldsConfigs)).thenThrow(new RuntimeException());
 		assertTrue(EqualsBuilder.reflectionEquals(fieldList2, service.reportFields()));
-
 	}
 
 	@Test
@@ -81,6 +81,7 @@ public class MailServiceTest {
 		service.persistFields();
 		verify(persistService).persistFields(fieldList1);
 		verify(persistService).persistFields(fieldList2);
+		verify(mailReader).closeConnection();
 	}
 
 	@Test

@@ -42,6 +42,7 @@ public class MailService {
 		for (Message message : emails) {
 			report(fields, message);
 		}
+		mailReader.closeConnection();
 		return fields;
 	}
 
@@ -61,6 +62,7 @@ public class MailService {
 		for (Message message : emails) {
 			persist(message);
 		}
+		mailReader.closeConnection();
 	}
 
 	private void persist(Message message) throws MessagingException {

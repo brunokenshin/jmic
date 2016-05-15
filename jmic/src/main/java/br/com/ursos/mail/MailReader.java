@@ -26,6 +26,7 @@ import br.com.ursos.service.ConfigurationService;
 public class MailReader {
 
 	private final ConfigurationService configService;
+	private Folder inbox;
 
 	@Autowired
 	public MailReader(ConfigurationService configService) {
@@ -33,23 +34,35 @@ public class MailReader {
 	}
 
 	public Message[] getEmails() throws MessagingException, SQLException {
-		Properties props = configService.getMailConnectionProperties();
+		inbox = getInbox();
+		SearchFilterFactory filters = new SearchFilterFactory(configService.getFilterConfigs());
+		return inbox.search(filters.getMessageFilters());
+	}
 
-		final String host = getConfigValue(props, HOST);
-		final String username = getConfigValue(props, USERNAME);
-		final String password = getConfigValue(props, PASSWORD);
+	private Folder getInbox() throws SQLException, MessagingException {
+		closeConnection();
+
+		Properties props = configService.getMailConnectionProperties();
+		String host = getConfigValue(props, HOST);
+		String username = getConfigValue(props, USERNAME);
+		String password = getConfigValue(props, PASSWORD);
 
 		Session session = Session.getInstance(props);
-
 		Store store = session.getStore(getConfigValue(props, PROTOCOL));
 		store.connect(host, username, password);
 
 		Folder inbox = store.getFolder(getConfigValue(props, INBOX_FOLDER));
 		inbox.open(READ_ONLY);
+		return inbox;
+	}
 
-		SearchFilterFactory filters = new SearchFilterFactory(configService.getFilterConfigs());
-
-		return inbox.search(filters.getMessageFilters());
+	public void closeConnection() throws MessagingException {
+		if (inbox != null && inbox.isOpen()) {
+			inbox.close(false);
+		}
+		if (inbox != null && inbox.getStore().isConnected()) {
+			inbox.getStore().close();
+		}
 	}
 
 }
