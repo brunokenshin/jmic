@@ -39,7 +39,20 @@ public class MailService {
 	public FieldList reportFields() throws MessagingException, IOException, SQLException {
 		Message[] emails = mailReader.getEmails();
 		FieldList fields = new FieldList();
+
 		for (Message message : emails) {
+			report(fields, message);
+		}
+		mailReader.closeConnection();
+		return fields;
+	}
+
+	public FieldList persistFields() throws MessagingException, IOException, SQLException {
+		Message[] emails = mailReader.getEmails();
+		FieldList fields = new FieldList();
+
+		for (Message message : emails) {
+			persist(message);
 			report(fields, message);
 		}
 		mailReader.closeConnection();
@@ -55,14 +68,6 @@ public class MailService {
 					+ "Fields for this message will be skipped [msgSubject=%s, msgSender=%s, msgDate=%s]",
 					message.getSubject(), message.getFrom(), message.getReceivedDate()), e);
 		}
-	}
-
-	public void persistFields() throws MessagingException, IOException, SQLException {
-		Message[] emails = mailReader.getEmails();
-		for (Message message : emails) {
-			persist(message);
-		}
-		mailReader.closeConnection();
 	}
 
 	private void persist(Message message) throws MessagingException {

@@ -1,7 +1,10 @@
 package br.com.ursos.service;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -67,6 +70,7 @@ public class MailServiceTest {
 	public void testReportFields() throws Exception {
 		fieldList1.addAll(fieldList2);
 		assertTrue(EqualsBuilder.reflectionEquals(fieldList1, service.reportFields()));
+		verify(mailParser, times(2)).getMessageFields(any(Message.class), anyListOf(ParserFieldConfig.class));
 		verify(mailReader).closeConnection();
 	}
 
@@ -81,6 +85,7 @@ public class MailServiceTest {
 		service.persistFields();
 		verify(persistService).persistFields(fieldList1);
 		verify(persistService).persistFields(fieldList2);
+		verify(mailParser, times(4)).getMessageFields(any(Message.class), anyListOf(ParserFieldConfig.class));
 		verify(mailReader).closeConnection();
 	}
 

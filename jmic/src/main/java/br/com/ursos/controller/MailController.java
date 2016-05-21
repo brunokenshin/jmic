@@ -31,9 +31,8 @@ public class MailController {
 
 	@ResponseBody
 	@RequestMapping("/import")
-	public String importFields() throws MessagingException, IOException, SQLException {
-		mailService.persistFields();
-		return "Done!";
+	public FieldList importFields() throws MessagingException, IOException, SQLException {
+		return mailService.persistFields();
 	}
 
 }

@@ -52,7 +52,7 @@ public class MailParser {
 			return new Field(fieldConfig.name, matcher.group(1).trim());
 		}
 
-		logger.warn("Field " + fieldConfig + " not found in message: " + msg);
+		logger.warn("Field not found in message: " + fieldConfig);
 		return new Field(null, null);
 	}
 
