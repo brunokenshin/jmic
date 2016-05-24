@@ -65,5 +65,8 @@ For google accounts maybe you need to active the "Less secure apps" option:
 # Mirrors:
 - https://gitlab.com/brunokenshin/jmic
 
+# Stable Versions:
+- https://gitlab.com/groups/viladosite_projs/jmic
+
 # Build Information:
 [![wercker status](https://app.wercker.com/status/2fd82aede5750d80a0e51d1df3e85835/m "wercker status")](https://app.wercker.com/project/bykey/2fd82aede5750d80a0e51d1df3e85835)
