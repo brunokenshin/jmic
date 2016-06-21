@@ -70,3 +70,5 @@ For google accounts maybe you need to active the "Less secure apps" option:
 
 # Build Information:
 [![wercker status](https://app.wercker.com/status/2fd82aede5750d80a0e51d1df3e85835/m "wercker status")](https://app.wercker.com/project/bykey/2fd82aede5750d80a0e51d1df3e85835)
+
+https://circleci.com/gh/:brunokenshin/:jmic.png?circle-token=:circle-token
