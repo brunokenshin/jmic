@@ -6,5 +6,4 @@ general:
     - "build/jmic.war"
 test:
   post:
-    - cd jmic/
-    ./gradlew
+    - cd jmic/; ./gradlew
